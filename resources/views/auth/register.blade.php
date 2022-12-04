@@ -29,15 +29,10 @@
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Универ') }}</label>
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('group') is-invalid @enderror" name="group" value="{{ old('group') }}" required autocomplete="group" autofocus>
-                                <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="group" value="{{ old('group') }}" required autocomplete="group" autofocus>
-                                       Выбирите университет
-                                    </button>
-                                    <ul class="dropdown-menu" style="">
-                                        <li><a class="dropdown-item" href="#">ДГТУ</a></li>
-                                    </ul>
-                                </div>
+                                <select class="form-select" aria-label="Default select example" @error('university') is-invalid @enderror" name="university" value="{{ old('university') }}" required autocomplete="university" autofocus>
+                                    <option selected>Выбирите университет</option>
+                                    <option value="1">ДГТУ</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row mb-3">

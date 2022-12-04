@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +22,28 @@ Route::get('/user/{id}/{name}', function ($id, $name) {
     return 'ID: ' . $id . 'Name: ' . $name;
 });
 
+//Route::get(
+//    '/user/profile',
+//    [UserProfileController::class, 'index']
+//)->name('profile');
+
+
+Route::get('/user/{id}/{name}', [App\Http\Controllers\UserProfileController::class, 'index'])->name('profile');
+
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+$groupData = [
+    'namespace' => 'App\Http\Controllers',
+    'prefix' => '/user/{id}/{name}/timetable',
+];
+
+Route::group($groupData, function () {
+    $methods = ['index', 'edit', 'update', 'create', 'store',];
+    Route::resource('addblock', 'UserProfileController')
+        ->only($methods)
+        ->names('users');
+});
